@@ -1,0 +1,26 @@
+{
+    "name": "boo/micro-webpack-encore-plugin",
+    "description": "This is a Micro plugin for webpack-encore support",
+    "type": "library",
+    "version": "0.1",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "require": {
+        "php": "^8.0|^8.1|^8.2",
+        "micro/kernel-app": "^1",
+        "micro/kernel-boot-dependency": "^1",
+        "micro/kernel-boot-configuration": "^1",
+        "micro/plugin-twig": "^1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Boo\\MicroPlugin\\WebpackEncore\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Oleksii Bulba",
+            "email": "oleksii.bulba@gmail.com"
+        }
+    ]
+}
