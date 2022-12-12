@@ -22,5 +22,8 @@
             "name": "Oleksii Bulba",
             "email": "oleksii.bulba@gmail.com"
         }
-    ]
+    ],
+    "config": {
+        "sort-packages": true
+    }
 }
