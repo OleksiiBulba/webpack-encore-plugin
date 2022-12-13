@@ -6,7 +6,7 @@ namespace Boo\MicroPlugin\WebpackEncore\TagRenderer;
 
 interface TagRendererInterface
 {
-    public function renderWebpackScriptTags(string $entryName, string $packageName = null, array $extraAttributes = []): string;
+    public function renderWebpackScriptTags(string $entryName, array $extraAttributes = []): string;
 
-    public function renderWebpackLinkTags(string $entryName, string $packageName = null, array $extraAttributes = []): string;
+    public function renderWebpackLinkTags(string $entryName, array $extraAttributes = []): string;
 }

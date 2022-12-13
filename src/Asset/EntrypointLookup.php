@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Boo\MicroPlugin\WebpackEncore\Asset;
 
 use Boo\MicroPlugin\WebpackEncore\Exception\EntrypointNotFoundException;
+use Boo\MicroPlugin\WebpackEncore\WebpackEncorePluginConfigurationInterface;
 
 class EntrypointLookup implements EntrypointLookupInterface
 {
@@ -12,7 +13,7 @@ class EntrypointLookup implements EntrypointLookupInterface
 
     private array $returnedFiles = [];
 
-    public function __construct(private readonly string $entrypointJsonPath)
+    public function __construct(private readonly WebpackEncorePluginConfigurationInterface $configuration)
     {
     }
 
@@ -68,7 +69,7 @@ class EntrypointLookup implements EntrypointLookupInterface
                 throw new EntrypointNotFoundException(sprintf('Could not find the entry "%s". Try "%s" instead (without the extension).', $entryName, $withoutExtension));
             }
 
-            throw new EntrypointNotFoundException(sprintf('Could not find the entry "%s" in "%s". Found: %s.', $entryName, $this->entrypointJsonPath, implode(', ', array_keys($entriesData['entrypoints']))));
+            throw new EntrypointNotFoundException(sprintf('Could not find the entry "%s" in "%s". Found: %s.', $entryName, $this->getEntrypointJsonPath(), implode(', ', array_keys($entriesData['entrypoints']))));
         }
     }
 
@@ -78,20 +79,25 @@ class EntrypointLookup implements EntrypointLookupInterface
             return $this->entriesData;
         }
 
-        if (!file_exists($this->entrypointJsonPath)) {
-            throw new \InvalidArgumentException(sprintf('Could not find the entrypoints file from Webpack: the file "%s" does not exist.', $this->entrypointJsonPath));
+        if (!file_exists($this->getEntrypointJsonPath())) {
+            throw new \InvalidArgumentException(sprintf('Could not find the entrypoints file from Webpack: the file "%s" does not exist.', $this->getEntrypointJsonPath()));
         }
 
-        $this->entriesData = json_decode(file_get_contents($this->entrypointJsonPath), true);
+        $this->entriesData = json_decode(file_get_contents($this->getEntrypointJsonPath()), true);
 
         if (null === $this->entriesData) {
-            throw new \InvalidArgumentException(sprintf('There was a problem JSON decoding the "%s" file', $this->entrypointJsonPath));
+            throw new \InvalidArgumentException(sprintf('There was a problem JSON decoding the "%s" file', $this->getEntrypointJsonPath()));
         }
 
         if (!isset($this->entriesData['entrypoints'])) {
-            throw new \InvalidArgumentException(sprintf('Could not find an "entrypoints" key in the "%s" file', $this->entrypointJsonPath));
+            throw new \InvalidArgumentException(sprintf('Could not find an "entrypoints" key in the "%s" file', $this->getEntrypointJsonPath()));
         }
 
         return $this->entriesData;
+    }
+
+    private function getEntrypointJsonPath(): string
+    {
+        return $this->configuration->getOutputPath().'/entrypoints.json';
     }
 }
