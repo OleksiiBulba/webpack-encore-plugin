@@ -10,20 +10,22 @@ class TagRenderer implements TagRendererInterface
 {
     private array $renderedFiles = [];
     private array $defaultAttributes = [];
-    private array $defaultScriptAttributes = [];
+    private array $defaultScriptAttributes = [
+        'type' => 'application/javascript'
+    ];
     private array $defaultLinkAttributes = [];
 
     public function __construct(private readonly EntrypointLookupInterface $entrypointLookup)
     {
     }
 
-    public function renderWebpackScriptTags(string $entryName, string $packageName = null, array $extraAttributes = []): string
+    public function renderWebpackScriptTags(string $entryName, array $extraAttributes = []): string
     {
         $scriptTags = [];
 
         foreach ($this->entrypointLookup->getJavaScriptFiles($entryName) as $filename) {
             $attributes = [];
-            $attributes['src'] = $filename; // $this->getAssetPath($filename, $packageName);
+            $attributes['src'] = $filename;
             $attributes = array_merge($attributes, $this->defaultAttributes, $this->defaultScriptAttributes, $extraAttributes);
 
             $scriptTags[] = sprintf(
@@ -37,14 +39,14 @@ class TagRenderer implements TagRendererInterface
         return implode('', $scriptTags);
     }
 
-    public function renderWebpackLinkTags(string $entryName, string $packageName = null, array $extraAttributes = []): string
+    public function renderWebpackLinkTags(string $entryName, array $extraAttributes = []): string
     {
         $scriptTags = [];
 
         foreach ($this->entrypointLookup->getCssFiles($entryName) as $filename) {
             $attributes = [];
             $attributes['rel'] = 'stylesheet';
-            $attributes['href'] = $filename; // $this->getAssetPath($filename, $packageName);
+            $attributes['href'] = $filename;
             $attributes = array_merge($attributes, $this->defaultAttributes, $this->defaultLinkAttributes, $extraAttributes);
 
             $scriptTags[] = sprintf(

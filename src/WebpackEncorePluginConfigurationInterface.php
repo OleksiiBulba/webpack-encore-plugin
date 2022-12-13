@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Boo\MicroPlugin\WebpackEncore;
 
-use Micro\Framework\Kernel\Configuration\PluginConfigurationInterface;
-
-interface WebpackEncorePluginConfigurationInterface extends PluginConfigurationInterface
+interface WebpackEncorePluginConfigurationInterface
 {
     public function getOutputPath(): string;
 }
