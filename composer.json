@@ -7,9 +7,17 @@
     "require": {
         "micro/plugin-twig": "^0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
     "autoload": {
         "psr-4": {
-            "Boo\\WebpackEncorePlugin\\": "src/"
+            "Boo\\WebpackEncorePlugin\\": "src/",
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Boo\\WebpackEncorePlugin\\Tests\\": "tests/"
         }
     },
     "authors": [
