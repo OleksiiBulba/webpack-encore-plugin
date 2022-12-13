@@ -63,10 +63,12 @@ class EntrypointLookup implements EntrypointLookupInterface
     {
         $entriesData = $this->getEntriesData();
         if (!isset($entriesData['entrypoints'][$entryName])) {
-            $withoutExtension = substr($entryName, 0, strrpos($entryName, '.'));
+            if (false !== $dotPos = strrpos($entryName, '.')) {
+                $withoutExtension = substr($entryName, 0, $dotPos);
 
-            if (isset($entriesData['entrypoints'][$withoutExtension])) {
-                throw new EntrypointNotFoundException(sprintf('Could not find the entry "%s". Try "%s" instead (without the extension).', $entryName, $withoutExtension));
+                if (isset($entriesData['entrypoints'][$withoutExtension])) {
+                    throw new EntrypointNotFoundException(sprintf('Could not find the entry "%s". Try "%s" instead (without the extension).', $entryName, $withoutExtension));
+                }
             }
 
             throw new EntrypointNotFoundException(sprintf('Could not find the entry "%s" in "%s". Found: %s.', $entryName, $this->getEntrypointJsonPath(), implode(', ', array_keys($entriesData['entrypoints']))));
