@@ -6,13 +6,14 @@ namespace Boo\WebpackEncorePlugin\Tests\TagRenderer;
 
 use Boo\WebpackEncorePlugin\Asset\EntrypointLookupInterface;
 use Boo\WebpackEncorePlugin\TagRenderer\TagRenderer;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class TagRendererTest extends TestCase
 {
-    private $model;
+    private TagRenderer $model;
 
-    private $entrypointLookupMock;
+    private EntrypointLookupInterface|MockObject $entrypointLookupMock;
 
     protected function setUp(): void
     {
@@ -53,7 +54,7 @@ class TagRendererTest extends TestCase
                     '/path/to/css/file.css',
                     '/path/to/another/css/file.css',
                 ],
-                'expectedLinkTagString' => '<link rel="stylesheet" href="/path/to/css/file.css"><link rel="stylesheet" href="/path/to/another/css/file.css">',
+                'expectedLinkTagString' => /** @lang text */ '<link rel="stylesheet" href="/path/to/css/file.css"><link rel="stylesheet" href="/path/to/another/css/file.css">',
             ]
         ];
     }
@@ -87,7 +88,7 @@ class TagRendererTest extends TestCase
                     '/path/to/js/file.js',
                     '/path/to/another/js/file.js',
                 ],
-                'expectedScriptTagString' => '<script src="/path/to/js/file.js" type="application/javascript"></script><script src="/path/to/another/js/file.js" type="application/javascript"></script>',
+                'expectedScriptTagString' => /** @lang text */ '<script src="/path/to/js/file.js" type="application/javascript"></script><script src="/path/to/another/js/file.js" type="application/javascript"></script>',
             ]
         ];
     }
