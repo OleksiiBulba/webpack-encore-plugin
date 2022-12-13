@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Boo\MicroPlugin\WebpackEncore\Exception;
+namespace Boo\WebpackEncorePlugin\Exception;
 
 class EntrypointNotFoundException extends \InvalidArgumentException
 {

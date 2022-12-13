@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Boo\MicroPlugin\WebpackEncore\Asset;
+namespace Boo\WebpackEncorePlugin\Asset;
 
-use Boo\MicroPlugin\WebpackEncore\Exception\EntrypointNotFoundException;
+use Boo\WebpackEncorePlugin\Exception\EntrypointNotFoundException;
 
 interface EntrypointLookupInterface
 {

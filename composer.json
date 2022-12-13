@@ -1,15 +1,15 @@
 {
-    "name": "boo/micro-webpack-encore-plugin",
+    "name": "boo/webpack-encore-plugin",
     "description": "This is a Micro plugin for webpack-encore support",
     "type": "library",
     "version": "0.1",
     "license": "MIT",
     "require": {
-        "micro/plugin-twig": "^1"
+        "micro/plugin-twig": "^0"
     },
     "autoload": {
         "psr-4": {
-            "Boo\\MicroPlugin\\WebpackEncore\\": "src/"
+            "Boo\\WebpackEncorePlugin\\": "src/"
         }
     },
     "authors": [
