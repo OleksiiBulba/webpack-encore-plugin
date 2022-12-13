@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Boo\MicroPlugin\WebpackEncore\TagRenderer;
+namespace Boo\WebpackEncorePlugin\TagRenderer;
 
 interface TagRendererInterface
 {

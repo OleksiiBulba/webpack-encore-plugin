@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Boo\MicroPlugin\WebpackEncore\Twig\Extension;
+namespace Boo\WebpackEncorePlugin\Twig\Extension;
 
-use Boo\MicroPlugin\WebpackEncore\Asset\EntrypointLookupInterface;
-use Boo\MicroPlugin\WebpackEncore\TagRenderer\TagRendererInterface;
+use Boo\WebpackEncorePlugin\Asset\EntrypointLookupInterface;
+use Boo\WebpackEncorePlugin\TagRenderer\TagRendererInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

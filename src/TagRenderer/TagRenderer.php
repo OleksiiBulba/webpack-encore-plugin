@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Boo\MicroPlugin\WebpackEncore\TagRenderer;
+namespace Boo\WebpackEncorePlugin\TagRenderer;
 
-use Boo\MicroPlugin\WebpackEncore\Asset\EntrypointLookupInterface;
+use Boo\WebpackEncorePlugin\Asset\EntrypointLookupInterface;
 
 class TagRenderer implements TagRendererInterface
 {

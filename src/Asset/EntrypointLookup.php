@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Boo\MicroPlugin\WebpackEncore\Asset;
+namespace Boo\WebpackEncorePlugin\Asset;
 
-use Boo\MicroPlugin\WebpackEncore\Exception\EntrypointNotFoundException;
-use Boo\MicroPlugin\WebpackEncore\WebpackEncorePluginConfigurationInterface;
+use Boo\WebpackEncorePlugin\Exception\EntrypointNotFoundException;
+use Boo\WebpackEncorePlugin\WebpackEncorePluginConfigurationInterface;
 
 class EntrypointLookup implements EntrypointLookupInterface
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Boo\MicroPlugin\WebpackEncore;
+namespace Boo\WebpackEncorePlugin;
 
 interface WebpackEncorePluginConfigurationInterface
 {
