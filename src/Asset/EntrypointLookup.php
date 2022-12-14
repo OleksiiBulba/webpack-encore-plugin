@@ -52,6 +52,9 @@ class EntrypointLookup implements EntrypointLookupInterface
         return isset($entriesData['entrypoints'][$entryName]);
     }
 
+    /**
+     * @psalm-return array<string>
+     */
     private function getEntryFiles(string $entryName, string $key): array
     {
         $this->validateEntryName($entryName);
