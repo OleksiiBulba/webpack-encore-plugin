@@ -6,6 +6,9 @@ namespace Boo\WebpackEncorePlugin;
 
 use Micro\Framework\Kernel\Configuration\PluginConfiguration;
 
+/**
+ * @codeCoverageIgnore
+ */
 class WebpackEncorePluginConfiguration extends PluginConfiguration implements WebpackEncorePluginConfigurationInterface
 {
     const CFG_OUTPUT_PATH = 'WEBPACK_ENCORE_OUTPUT_PATH';

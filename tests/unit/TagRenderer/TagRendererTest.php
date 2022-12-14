@@ -2,13 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Boo\WebpackEncorePlugin\Tests\TagRenderer;
+namespace Boo\WebpackEncorePlugin\Tests\Unit\TagRenderer;
 
 use Boo\WebpackEncorePlugin\Asset\EntrypointLookupInterface;
 use Boo\WebpackEncorePlugin\TagRenderer\TagRenderer;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Boo\WebpackEncorePlugin\TagRenderer\TagRenderer
+ */
 class TagRendererTest extends TestCase
 {
     private TagRenderer $model;
@@ -27,6 +30,7 @@ class TagRendererTest extends TestCase
 
     /**
      * @dataProvider renderWebpackLinkTagsDataProvider
+     * @covers \Boo\WebpackEncorePlugin\TagRenderer\TagRenderer::renderWebpackLinkTags
      */
     public function testRenderWebpackLinkTags(string $entryName, array $extraAttributes, array $cssFiles, string $expectedLinkTagString)
     {
@@ -61,6 +65,7 @@ class TagRendererTest extends TestCase
 
     /**
      * @dataProvider renderWebpackScriptTagsDataProvider
+     * @covers \Boo\WebpackEncorePlugin\TagRenderer\TagRenderer::renderWebpackScriptTags
      */
     public function testRenderWebpackScriptTags(string $entryName, array $extraAttributes, array $jsFiles, string $expectedScriptTagString)
     {
@@ -89,7 +94,16 @@ class TagRendererTest extends TestCase
                     '/path/to/another/js/file.js',
                 ],
                 'expectedScriptTagString' => /** @lang text */ '<script src="/path/to/js/file.js" type="application/javascript"></script><script src="/path/to/another/js/file.js" type="application/javascript"></script>',
-            ]
+            ],
+            'some-entry-with-attribute-with-true-value' => [
+                'entryName' => 'some-entry-name',
+                'extraAttributes' => ['defer' => true],
+                'jsFiles' => [
+                    '/path/to/js/file.js',
+                    '/path/to/another/js/file.js',
+                ],
+                'expectedScriptTagString' => /** @lang text */ '<script src="/path/to/js/file.js" type="application/javascript" defer></script><script src="/path/to/another/js/file.js" type="application/javascript" defer></script>',
+            ],
         ];
     }
 }

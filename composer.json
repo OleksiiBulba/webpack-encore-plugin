@@ -1,23 +1,24 @@
 {
     "name": "boo/webpack-encore-plugin",
     "description": "This is a Micro plugin for webpack-encore support",
-    "type": "library",
+    "type": "micro-plugin",
     "version": "0.1",
     "license": "MIT",
     "require": {
         "micro/plugin-twig": "^0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.13",
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
-            "Boo\\WebpackEncorePlugin\\": "src/",
+            "Boo\\WebpackEncorePlugin\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Boo\\WebpackEncorePlugin\\Tests\\": "tests/"
+            "Boo\\WebpackEncorePlugin\\Tests\\Unit\\": "tests/unit"
         }
     },
     "authors": [
@@ -28,5 +29,11 @@
     ],
     "config": {
         "sort-packages": true
+    },
+    "extra": {
+        "thanks": {
+            "name": "symfony/webpack-encore-bundle",
+            "url": "https://github.com/symfony/webpack-encore-bundle"
+        }
     }
 }

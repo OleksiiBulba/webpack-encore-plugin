@@ -9,6 +9,9 @@ use Boo\WebpackEncorePlugin\TagRenderer\TagRendererInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
+/**
+ * @codeCoverageIgnore
+ */
 class EntryFilesTwigExtension extends AbstractExtension
 {
     private TagRendererInterface $tagRenderer;
