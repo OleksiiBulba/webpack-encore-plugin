@@ -1,15 +1,23 @@
 {
     "name": "boo/webpack-encore-plugin",
     "description": "This is a Micro plugin for webpack-encore support",
+    "license": "MIT",
     "type": "micro-plugin",
     "version": "0.1",
-    "license": "MIT",
+    "authors": [
+        {
+            "name": "Oleksii Bulba",
+            "email": "oleksii.bulba@gmail.com"
+        }
+    ],
     "require": {
         "micro/plugin-twig": "^0"
     },
     "require-dev": {
+        "ergebnis/composer-normalize": "^2.29",
         "friendsofphp/php-cs-fixer": "^3.13",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "^5.2"
     },
     "autoload": {
         "psr-4": {
@@ -21,13 +29,10 @@
             "Boo\\WebpackEncorePlugin\\Tests\\Unit\\": "tests/unit"
         }
     },
-    "authors": [
-        {
-            "name": "Oleksii Bulba",
-            "email": "oleksii.bulba@gmail.com"
-        }
-    ],
     "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        },
         "sort-packages": true
     },
     "extra": {
