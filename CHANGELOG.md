@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0] - 2022-12-14
+
 ### Added
+- Plugin created;
 - Created five twig functions:
   - encore_entry_js_files - returns script files;
   - encore_entry_css_files - returns link files;
