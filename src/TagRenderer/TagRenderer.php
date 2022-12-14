@@ -70,9 +70,9 @@ class TagRenderer implements TagRendererInterface
         });
 
         return implode(' ', array_map(
-            static function ($key, $value) {
+            static function ($key, string|null|bool $value) {
                 // allows for things like defer: true to only render "defer"
-                if (true === $value || null === $value) {
+                if (\is_bool($value) || null === $value) {
                     return $key;
                 }
 

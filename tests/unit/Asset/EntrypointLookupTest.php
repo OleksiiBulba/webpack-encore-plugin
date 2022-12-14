@@ -16,6 +16,7 @@ use Boo\WebpackEncorePlugin\Exception\EntrypointNotFoundException;
 use Boo\WebpackEncorePlugin\WebpackEncorePluginConfigurationInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Serializer\Encoder\JsonDecode;
 
 /**
  * @covers \Boo\WebpackEncorePlugin\Asset\EntrypointLookup
@@ -33,7 +34,7 @@ class EntrypointLookupTest extends TestCase
             ->onlyMethods(['getOutputPath'])
             ->getMockForAbstractClass();
 
-        $this->model = new EntrypointLookup($this->configurationMock);
+        $this->model = new EntrypointLookup($this->configurationMock, new JsonDecode([JsonDecode::ASSOCIATIVE => true]));
     }
 
     /**

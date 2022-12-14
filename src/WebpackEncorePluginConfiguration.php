@@ -22,8 +22,8 @@ class WebpackEncorePluginConfiguration extends PluginConfiguration implements We
 
     public function getOutputPath(): string
     {
-        return $this->configuration->get(self::CFG_OUTPUT_PATH,
-            $this->configuration->get('BASE_PATH').'/public/build'
+        return (string) $this->configuration->get(self::CFG_OUTPUT_PATH,
+            ((string) $this->configuration->get('BASE_PATH')).'/public/build'
         );
     }
 }

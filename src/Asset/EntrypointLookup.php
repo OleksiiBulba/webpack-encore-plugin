@@ -13,15 +13,20 @@ namespace Boo\WebpackEncorePlugin\Asset;
 
 use Boo\WebpackEncorePlugin\Exception\EntrypointNotFoundException;
 use Boo\WebpackEncorePlugin\WebpackEncorePluginConfigurationInterface;
+use Symfony\Component\Serializer\Encoder\DecoderInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 
 class EntrypointLookup implements EntrypointLookupInterface
 {
-    private mixed $entriesData = null;
+    private ?array $entriesData = null;
 
     private array $returnedFiles = [];
 
-    public function __construct(private readonly WebpackEncorePluginConfigurationInterface $configuration)
-    {
+    public function __construct(
+        private readonly WebpackEncorePluginConfigurationInterface $configuration,
+        private readonly DecoderInterface $decoder
+    ) {
     }
 
     /**
@@ -51,6 +56,7 @@ class EntrypointLookup implements EntrypointLookupInterface
     {
         $this->validateEntryName($entryName);
         $entriesData = $this->getEntriesData();
+        /** @var array $entryData */
         $entryData = $entriesData['entrypoints'][$entryName] ?? [];
 
         if (!isset($entryData[$key])) {
@@ -59,6 +65,7 @@ class EntrypointLookup implements EntrypointLookupInterface
         }
 
         // make sure to not return the same file multiple times
+        /** @var array $entryFiles */
         $entryFiles = $entryData[$key];
         $newFiles = array_values(array_diff($entryFiles, $this->returnedFiles));
         $this->returnedFiles = array_merge($this->returnedFiles, $newFiles);
@@ -66,8 +73,9 @@ class EntrypointLookup implements EntrypointLookupInterface
         return $newFiles;
     }
 
-    private function validateEntryName(string $entryName)
+    private function validateEntryName(string $entryName): void
     {
+        /** @var array<string, array> $entriesData */
         $entriesData = $this->getEntriesData();
         if (!isset($entriesData['entrypoints'][$entryName])) {
             if (false !== $dotPos = strrpos($entryName, '.')) {
@@ -92,7 +100,11 @@ class EntrypointLookup implements EntrypointLookupInterface
             throw new \InvalidArgumentException(sprintf('Could not find the entrypoints file from Webpack: the file "%s" does not exist.', $this->getEntrypointJsonPath()));
         }
 
-        $this->entriesData = json_decode(file_get_contents($this->getEntrypointJsonPath()), true);
+        try {
+            $this->entriesData = $this->decoder->decode(file_get_contents($this->getEntrypointJsonPath()), JsonEncoder::FORMAT);
+        } catch (UnexpectedValueException $e) {
+            throw new \InvalidArgumentException(sprintf('There was a problem JSON decoding the "%s" file', $this->getEntrypointJsonPath()), 0, $e);
+        }
 
         if (null === $this->entriesData) {
             throw new \InvalidArgumentException(sprintf('There was a problem JSON decoding the "%s" file', $this->getEntrypointJsonPath()));
