@@ -1,0 +1,89 @@
+on: [pull_request]
+name: Static analysis
+
+jobs:
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          coverage: none
+          tools: cs2pr
+
+      - name: Download dependencies
+        uses: ramsey/composer-install@v2
+
+      - name: Install PHPStan
+        uses: ramsey/composer-install@v2
+
+      - name: PHPStan
+        run: ./vendor/bin/phpstan analyze --no-progress --error-format=checkstyle | cs2pr
+
+  php-cs-fixer:
+    name: PHP-CS-Fixer
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          coverage: none
+          tools: cs2pr
+
+      - name: Install php-cs-fixer
+        uses: ramsey/composer-install@v1
+
+      - name: PHP-CS-Fixer
+        run: ./vendor/bin/php-cs-fixer fix --verbose --dry-run --format=checkstyle --using-cache=no | cs2pr
+
+  psalm:
+    name: Psalm
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          coverage: none
+          tools: vimeo/psalm:4.11.2
+
+      - name: Download dependencies
+        uses: ramsey/composer-install@v2
+
+      - name: Install psalm
+        uses: ramsey/composer-install@v2
+
+      - name: Psalm
+        run: ./vendor/bin/psalm --no-progress
+
+  composer-normalize:
+    name: Composer Normalize
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          coverage: none
+          tools: composer-normalize
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Normalize
+        run: composer-normalize --dry-run
