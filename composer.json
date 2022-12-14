@@ -1,5 +1,5 @@
 {
-    "name": "boo/webpack-encore-plugin",
+    "name": "oleksiibulba/webpack-encore-plugin",
     "description": "This is a Micro plugin for webpack-encore support",
     "license": "MIT",
     "type": "micro-plugin",
