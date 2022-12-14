@@ -15,7 +15,6 @@ use Boo\WebpackEncorePlugin\Asset\EntrypointLookupInterface;
 
 class TagRenderer implements TagRendererInterface
 {
-    private array $renderedFiles = [];
     private array $defaultAttributes = [];
     private array $defaultScriptAttributes = [
         'type' => 'application/javascript',
@@ -39,8 +38,6 @@ class TagRenderer implements TagRendererInterface
                 /* @lang text */ '<script %s></script>',
                 $this->convertArrayToAttributes($attributes)
             );
-
-            $this->renderedFiles['scripts'][] = $attributes['src'];
         }
 
         return implode('', $scriptTags);
@@ -60,8 +57,6 @@ class TagRenderer implements TagRendererInterface
                 /* @lang text */ '<link %s>',
                 $this->convertArrayToAttributes($attributes)
             );
-
-            $this->renderedFiles['styles'][] = $attributes['href'];
         }
 
         return implode('', $scriptTags);
