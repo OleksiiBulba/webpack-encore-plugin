@@ -15,14 +15,12 @@ use Boo\WebpackEncorePlugin\Asset\EntrypointLookupInterface;
 
 class TagRenderer implements TagRendererInterface
 {
-    private array $defaultAttributes = [];
-    private array $defaultScriptAttributes = [
-        'type' => 'application/javascript',
-    ];
-    private array $defaultLinkAttributes = [];
-
-    public function __construct(private readonly EntrypointLookupInterface $entrypointLookup)
-    {
+    public function __construct(
+        private readonly EntrypointLookupInterface $entrypointLookup,
+        private readonly array $defaultAttributes = [],
+        private readonly array $defaultScriptAttributes = ['type' => 'application/javascript'],
+        private readonly array $defaultLinkAttributes = []
+    ) {
     }
 
     public function renderWebpackScriptTags(string $entryName, array $extraAttributes = []): string
