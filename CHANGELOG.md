@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0] - 2022-12-14
 
+### Updated
+- Updated dependencies;
+- Updated README.md;
+
+## [0.1] - 2022-12-14
+
 ### Added
 - Plugin created;
 - Created five twig functions:
