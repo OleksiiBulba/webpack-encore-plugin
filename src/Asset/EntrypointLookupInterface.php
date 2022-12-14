@@ -17,11 +17,15 @@ interface EntrypointLookupInterface
 {
     /**
      * @throws EntrypointNotFoundException if an entry name is passed that does not exist in entrypoints.json
+     *
+     * @psalm-return array<string>
      */
     public function getJavaScriptFiles(string $entryName): array;
 
     /**
      * @throws EntrypointNotFoundException if an entry name is passed that does not exist in entrypoints.json
+     *
+     * @psalm-return array<string>
      */
     public function getCssFiles(string $entryName): array;
 

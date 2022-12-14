@@ -19,9 +19,13 @@ use Boo\WebpackEncorePlugin\Twig\Extension\EntryFilesTwigExtension;
 use Micro\Framework\Kernel\Plugin\ConfigurableInterface;
 use Micro\Framework\Kernel\Plugin\PluginConfigurationTrait;
 use Micro\Plugin\Twig\Plugin\TwigExtensionPluginInterface;
+use Symfony\Component\Serializer\Encoder\DecoderInterface;
+use Symfony\Component\Serializer\Encoder\JsonDecode;
 use Twig\Extension\ExtensionInterface;
 
 /**
+ * @psalm-suppress ImplementedReturnTypeMismatch
+ *
  * @method WebpackEncorePluginConfigurationInterface configuration()
  *
  * @codeCoverageIgnore
@@ -47,6 +51,11 @@ class WebpackEncorePlugin implements TwigExtensionPluginInterface, ConfigurableI
 
     protected function createEntrypointLookup(): EntrypointLookupInterface
     {
-        return new EntrypointLookup($this->configuration());
+        return new EntrypointLookup($this->configuration(), $this->createDecoder());
+    }
+
+    protected function createDecoder(): DecoderInterface
+    {
+        return new JsonDecode([JsonDecode::ASSOCIATIVE => true]);
     }
 }
