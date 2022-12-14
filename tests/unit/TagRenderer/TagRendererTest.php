@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the WebpackEncore plugin for Micro Framework.
+ * (c) Oleksii Bulba <oleksii.bulba@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Boo\WebpackEncorePlugin\Tests\Unit\TagRenderer;
 
 use Boo\WebpackEncorePlugin\Asset\EntrypointLookupInterface;
@@ -30,6 +37,7 @@ class TagRendererTest extends TestCase
 
     /**
      * @dataProvider renderWebpackLinkTagsDataProvider
+     *
      * @covers \Boo\WebpackEncorePlugin\TagRenderer\TagRenderer::renderWebpackLinkTags
      */
     public function testRenderWebpackLinkTags(string $entryName, array $extraAttributes, array $cssFiles, string $expectedLinkTagString)
@@ -58,13 +66,14 @@ class TagRendererTest extends TestCase
                     '/path/to/css/file.css',
                     '/path/to/another/css/file.css',
                 ],
-                'expectedLinkTagString' => /** @lang text */ '<link rel="stylesheet" href="/path/to/css/file.css"><link rel="stylesheet" href="/path/to/another/css/file.css">',
-            ]
+                'expectedLinkTagString' => /* @lang text */ '<link rel="stylesheet" href="/path/to/css/file.css"><link rel="stylesheet" href="/path/to/another/css/file.css">',
+            ],
         ];
     }
 
     /**
      * @dataProvider renderWebpackScriptTagsDataProvider
+     *
      * @covers \Boo\WebpackEncorePlugin\TagRenderer\TagRenderer::renderWebpackScriptTags
      */
     public function testRenderWebpackScriptTags(string $entryName, array $extraAttributes, array $jsFiles, string $expectedScriptTagString)
@@ -93,7 +102,7 @@ class TagRendererTest extends TestCase
                     '/path/to/js/file.js',
                     '/path/to/another/js/file.js',
                 ],
-                'expectedScriptTagString' => /** @lang text */ '<script src="/path/to/js/file.js" type="application/javascript"></script><script src="/path/to/another/js/file.js" type="application/javascript"></script>',
+                'expectedScriptTagString' => /* @lang text */ '<script src="/path/to/js/file.js" type="application/javascript"></script><script src="/path/to/another/js/file.js" type="application/javascript"></script>',
             ],
             'some-entry-with-attribute-with-true-value' => [
                 'entryName' => 'some-entry-name',
@@ -102,7 +111,7 @@ class TagRendererTest extends TestCase
                     '/path/to/js/file.js',
                     '/path/to/another/js/file.js',
                 ],
-                'expectedScriptTagString' => /** @lang text */ '<script src="/path/to/js/file.js" type="application/javascript" defer></script><script src="/path/to/another/js/file.js" type="application/javascript" defer></script>',
+                'expectedScriptTagString' => /* @lang text */ '<script src="/path/to/js/file.js" type="application/javascript" defer></script><script src="/path/to/another/js/file.js" type="application/javascript" defer></script>',
             ],
         ];
     }

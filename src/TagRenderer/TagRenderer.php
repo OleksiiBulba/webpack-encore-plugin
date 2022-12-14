@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the WebpackEncore plugin for Micro Framework.
+ * (c) Oleksii Bulba <oleksii.bulba@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Boo\WebpackEncorePlugin\TagRenderer;
 
 use Boo\WebpackEncorePlugin\Asset\EntrypointLookupInterface;
@@ -11,7 +18,7 @@ class TagRenderer implements TagRendererInterface
     private array $renderedFiles = [];
     private array $defaultAttributes = [];
     private array $defaultScriptAttributes = [
-        'type' => 'application/javascript'
+        'type' => 'application/javascript',
     ];
     private array $defaultLinkAttributes = [];
 
@@ -29,7 +36,7 @@ class TagRenderer implements TagRendererInterface
             $attributes = array_merge($attributes, $this->defaultAttributes, $this->defaultScriptAttributes, $extraAttributes);
 
             $scriptTags[] = sprintf(
-                '<script %s></script>',
+                /* @lang text */ '<script %s></script>',
                 $this->convertArrayToAttributes($attributes)
             );
 
@@ -50,7 +57,7 @@ class TagRenderer implements TagRendererInterface
             $attributes = array_merge($attributes, $this->defaultAttributes, $this->defaultLinkAttributes, $extraAttributes);
 
             $scriptTags[] = sprintf(
-                '<link %s>',
+                /* @lang text */ '<link %s>',
                 $this->convertArrayToAttributes($attributes)
             );
 

@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the WebpackEncore plugin for Micro Framework.
+ * (c) Oleksii Bulba <oleksii.bulba@gmail.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Boo\WebpackEncorePlugin\Tests\Unit\Asset;
 
 use Boo\WebpackEncorePlugin\Asset\EntrypointLookup;
@@ -31,13 +38,14 @@ class EntrypointLookupTest extends TestCase
 
     /**
      * @dataProvider getCssFilesDataProvider
+     *
      * @covers \Boo\WebpackEncorePlugin\Asset\EntrypointLookup::getCssFiles
      */
     public function testGetCssFiles(string $entryName, array $expectedResult): void
     {
         $this->configurationMock->expects($this->any())
             ->method('getOutputPath')
-            ->willReturn(__DIR__ . '/../fixtures/correct');
+            ->willReturn(__DIR__.'/../fixtures/correct');
 
         $this->assertEquals($expectedResult, $this->model->getCssFiles($entryName));
     }
@@ -52,7 +60,7 @@ class EntrypointLookupTest extends TestCase
             [
                 'entryName' => 'entrypoint2',
                 'expectedResult' => [
-                    "/some/path/to/js/file.css"
+                    '/some/path/to/js/file.css',
                 ],
             ],
         ];
@@ -60,13 +68,14 @@ class EntrypointLookupTest extends TestCase
 
     /**
      * @dataProvider getJavaScriptFilesDataProvider
+     *
      * @covers \Boo\WebpackEncorePlugin\Asset\EntrypointLookup::getJavaScriptFiles
      */
     public function testGetJavaScriptFiles(string $entryName, array $expectedResult): void
     {
         $this->configurationMock->expects($this->any())
             ->method('getOutputPath')
-            ->willReturn(__DIR__ . '/../fixtures/correct');
+            ->willReturn(__DIR__.'/../fixtures/correct');
 
         $this->assertEquals($expectedResult, $this->model->getJavaScriptFiles($entryName));
     }
@@ -77,15 +86,15 @@ class EntrypointLookupTest extends TestCase
             [
                 'entryName' => 'entrypoint1',
                 'expectedResult' => [
-                    "/some/path/to/jsFile.js",
-                    "/another/path/to/js/file.js",
-                    "/build/app.js",
+                    '/some/path/to/jsFile.js',
+                    '/another/path/to/js/file.js',
+                    '/build/app.js',
                 ],
             ],
             [
                 'entryName' => 'entrypoint2',
                 'expectedResult' => [
-                    "/some/path/to/another/js/file.js",
+                    '/some/path/to/another/js/file.js',
                 ],
             ],
         ];
@@ -93,13 +102,14 @@ class EntrypointLookupTest extends TestCase
 
     /**
      * @dataProvider entryExistsDataProvider
+     *
      * @covers \Boo\WebpackEncorePlugin\Asset\EntrypointLookup::entryExists
      */
     public function testEntryExists(string $entryName, bool $expectedResult): void
     {
         $this->configurationMock->expects($this->any())
             ->method('getOutputPath')
-            ->willReturn(__DIR__ . '/../fixtures/correct');
+            ->willReturn(__DIR__.'/../fixtures/correct');
 
         $this->assertEquals($expectedResult, $this->model->entryExists($entryName));
     }
@@ -129,7 +139,7 @@ class EntrypointLookupTest extends TestCase
     {
         $this->configurationMock->expects($this->any())
             ->method('getOutputPath')
-            ->willReturn(__DIR__ . '/../fixtures/correct');
+            ->willReturn(__DIR__.'/../fixtures/correct');
 
         $this->expectException(EntrypointNotFoundException::class);
         $this->expectExceptionMessageMatches($expectedExceptionMessageMatches);
@@ -157,7 +167,7 @@ class EntrypointLookupTest extends TestCase
     {
         $this->configurationMock->expects($this->any())
             ->method('getOutputPath')
-            ->willReturn(__DIR__ . $entrypointFilePath);
+            ->willReturn(__DIR__.$entrypointFilePath);
 
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessageMatches($expectedExceptionMessageMatches);
