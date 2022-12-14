@@ -16,6 +16,7 @@ use Twig\Extension\ExtensionInterface;
 
 /**
  * @method WebpackEncorePluginConfigurationInterface configuration()
+ * @codeCoverageIgnore
  */
 class WebpackEncorePlugin implements TwigExtensionPluginInterface, ConfigurableInterface
 {
