@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Boo\WebpackEncorePlugin\TagRenderer;
+namespace OleksiiBulba\WebpackEncorePlugin\TagRenderer;
 
 interface TagRendererInterface
 {
