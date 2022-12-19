@@ -7,7 +7,9 @@
     "authors": [
         {
             "name": "Oleksii Bulba",
-            "email": "oleksii.bulba@gmail.com"
+            "email": "oleksii.bulba@gmail.com",
+            "homepage": "https://github.com/OleksiiBulba",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -43,5 +45,11 @@
             "name": "symfony/webpack-encore-bundle",
             "url": "https://github.com/symfony/webpack-encore-bundle"
         }
+    },
+    "scripts": {
+        "php-cs-fix": "./vendor/bin/php-cs-fixer fix --verbose --using-cache=no",
+        "php-cs-try": "./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no",
+        "phpstan": "./vendor/bin/phpstan analyze --no-progress",
+        "phpunit": "./vendor/bin/phpunit"
     }
 }
