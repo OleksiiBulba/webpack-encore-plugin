@@ -47,9 +47,19 @@
         }
     },
     "scripts": {
+        "coverage": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text",
         "php-cs-fix": "./vendor/bin/php-cs-fixer fix --verbose --using-cache=no",
         "php-cs-try": "./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no",
         "phpstan": "./vendor/bin/phpstan analyze --no-progress",
-        "phpunit": "./vendor/bin/phpunit"
+        "phpunit": "./vendor/bin/phpunit",
+        "statics": [
+            "@phpstan",
+            "@php-cs-try"
+        ],
+        "test": [
+            "@statics",
+            "@phpunit",
+            "@coverage"
+        ]
     }
 }

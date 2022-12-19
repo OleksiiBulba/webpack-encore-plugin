@@ -80,17 +80,19 @@ class EntrypointLookup implements EntrypointLookupInterface
     {
         /** @var array<string, array> $entriesData */
         $entriesData = $this->getEntriesData();
-        if (!isset($entriesData['entrypoints'][$entryName])) {
-            if (false !== $dotPos = strrpos($entryName, '.')) {
-                $withoutExtension = substr($entryName, 0, $dotPos);
+        if (isset($entriesData['entrypoints'][$entryName])) {
+            return;
+        }
 
-                if (isset($entriesData['entrypoints'][$withoutExtension])) {
-                    throw new EntrypointNotFoundException(sprintf('Could not find the entry "%s". Try "%s" instead (without the extension).', $entryName, $withoutExtension));
-                }
-            }
-
+        if (false === $dotPos = strrpos($entryName, '.')) {
             throw new EntrypointNotFoundException(sprintf('Could not find the entry "%s" in "%s". Found: %s.', $entryName, $this->getEntrypointJsonPath(), implode(', ', array_keys($entriesData['entrypoints']))));
         }
+
+        if (isset($entriesData['entrypoints'][$withoutExtension = substr($entryName, 0, $dotPos)])) {
+            throw new EntrypointNotFoundException(sprintf('Could not find the entry "%s". Try "%s" instead (without the extension).', $entryName, $withoutExtension));
+        }
+
+        throw new EntrypointNotFoundException(sprintf('Could not find the entry "%s" in "%s". Found: %s.', $entryName, $this->getEntrypointJsonPath(), implode(', ', array_keys($entriesData['entrypoints']))));
     }
 
     private function getEntriesData(): array
