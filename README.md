@@ -97,6 +97,7 @@ composer test
 ## Contributing
 
 Please feel free to open pull request or create an issue, they are more than welcome!
+Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
 
 ## Security
 

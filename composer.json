@@ -26,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Boo\\WebpackEncorePlugin\\": "src"
+            "OleksiiBulba\\WebpackEncorePlugin\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Boo\\WebpackEncorePlugin\\Tests\\Unit\\": "tests/unit"
+            "OleksiiBulba\\WebpackEncorePlugin\\Tests\\Unit\\": "tests/unit"
         }
     },
     "config": {

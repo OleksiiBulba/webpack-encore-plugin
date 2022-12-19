@@ -9,17 +9,17 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Boo\WebpackEncorePlugin\Tests\Unit\Asset;
+namespace OleksiiBulba\WebpackEncorePlugin\Tests\Unit\Asset;
 
-use Boo\WebpackEncorePlugin\Asset\EntrypointLookup;
-use Boo\WebpackEncorePlugin\Exception\EntrypointNotFoundException;
-use Boo\WebpackEncorePlugin\WebpackEncorePluginConfigurationInterface;
+use OleksiiBulba\WebpackEncorePlugin\Asset\EntrypointLookup;
+use OleksiiBulba\WebpackEncorePlugin\Exception\EntrypointNotFoundException;
+use OleksiiBulba\WebpackEncorePlugin\WebpackEncorePluginConfigurationInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 
 /**
- * @covers \Boo\WebpackEncorePlugin\Asset\EntrypointLookup
+ * @covers \OleksiiBulba\WebpackEncorePlugin\Asset\EntrypointLookup
  */
 class EntrypointLookupTest extends TestCase
 {
@@ -40,7 +40,7 @@ class EntrypointLookupTest extends TestCase
     /**
      * @dataProvider getCssFilesDataProvider
      *
-     * @covers \Boo\WebpackEncorePlugin\Asset\EntrypointLookup::getCssFiles
+     * @covers \OleksiiBulba\WebpackEncorePlugin\Asset\EntrypointLookup::getCssFiles
      */
     public function testGetCssFiles(string $entryName, array $expectedResult): void
     {
@@ -70,7 +70,7 @@ class EntrypointLookupTest extends TestCase
     /**
      * @dataProvider getJavaScriptFilesDataProvider
      *
-     * @covers \Boo\WebpackEncorePlugin\Asset\EntrypointLookup::getJavaScriptFiles
+     * @covers \OleksiiBulba\WebpackEncorePlugin\Asset\EntrypointLookup::getJavaScriptFiles
      */
     public function testGetJavaScriptFiles(string $entryName, array $expectedResult): void
     {
@@ -104,7 +104,7 @@ class EntrypointLookupTest extends TestCase
     /**
      * @dataProvider entryExistsDataProvider
      *
-     * @covers \Boo\WebpackEncorePlugin\Asset\EntrypointLookup::entryExists
+     * @covers \OleksiiBulba\WebpackEncorePlugin\Asset\EntrypointLookup::entryExists
      */
     public function testEntryExists(string $entryName, bool $expectedResult): void
     {
