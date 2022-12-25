@@ -3,6 +3,7 @@
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Total Downloads][ico-downloads]][link-downloads]
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FOleksiiBulba%2Fwebpack-encore-plugin.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FOleksiiBulba%2Fwebpack-encore-plugin?ref=badge_shield)
 
 This plugin adds several twig functions that help to include script and style html tags to twig templates from webpack-encore entries.
 
@@ -135,3 +136,6 @@ For the full copyright and license information, please see the [License File](LI
 [link-contributors]: ../../contributors
 [link-license]: https://opensource.org/licenses/MIT
 [email-fabien]: mailto:fabien@symfony.com
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FOleksiiBulba%2Fwebpack-encore-plugin.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FOleksiiBulba%2Fwebpack-encore-plugin?ref=badge_large)
