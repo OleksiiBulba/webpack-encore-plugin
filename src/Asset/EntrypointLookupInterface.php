@@ -16,6 +16,12 @@ use OleksiiBulba\WebpackEncorePlugin\Exception\EntrypointNotFoundException;
 interface EntrypointLookupInterface
 {
     /**
+     * Twig function to get all JavaScript files for an entry.
+     *
+     * encore_entry_js_files(string $entryName): array
+     *
+     * Usage: {{ encore_entry_js_files('app') }}
+     *
      * @throws EntrypointNotFoundException if an entry name is passed that does not exist in entrypoints.json
      *
      * @psalm-return array<string>
@@ -23,11 +29,24 @@ interface EntrypointLookupInterface
     public function getJavaScriptFiles(string $entryName): array;
 
     /**
+     * Twig function to get all CSS files for an entry.
+     *
+     * encore_entry_css_files(string $entryName): array
+     *
+     * Usage: {{ encore_entry_css_files('app') }}
+     *
      * @throws EntrypointNotFoundException if an entry name is passed that does not exist in entrypoints.json
      *
      * @psalm-return array<string>
      */
     public function getCssFiles(string $entryName): array;
 
+    /**
+     * Twig function to check if an entry exists.
+     *
+     * encore_entry_exists(string $entryName): bool
+     *
+     * Usage: {% if encore_entry_exists('app') %}
+     */
     public function entryExists(string $entryName): bool;
 }
