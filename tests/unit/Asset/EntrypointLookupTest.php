@@ -277,25 +277,25 @@ class EntrypointLookupTest extends TestCase
         return [
             [
                 'entrypointFilePath' => '/../fixtures/bad_json',
-                'expectedExceptionMessageMatches' => '/There was a problem JSON decoding the ".*\/fixtures\/bad_json\/entrypoints.json" file/',
+                'expectedExceptionMessageMatches' => '/There was a problem JSON decoding the ".*\/fixtures\/bad_json\/entrypoints.json" file\. Try to run npm\/yarn build to fix the issue\./',
                 'expectedJson' => file_get_contents(__DIR__.'/../fixtures/bad_json/entrypoints.json'),
                 'decodedJson' => null,
             ],
             [
                 'entrypointFilePath' => '/../fixtures/no_entrypoint_key',
-                'expectedExceptionMessageMatches' => '/Could not find an "entrypoints" key in the ".*\/fixtures\/no_entrypoint_key\/entrypoints.json" file/',
+                'expectedExceptionMessageMatches' => '/Could not find an "entrypoints" key in the ".*\/fixtures\/no_entrypoint_key\/entrypoints.json" file\. Try to run npm\/yarn build to fix the issue\./',
                 'expectedJson' => file_get_contents(__DIR__.'/../fixtures/no_entrypoint_key/entrypoints.json'),
                 'decodedJson' => ['entrypoint' => []],
             ],
             [
                 'entrypointFilePath' => '/../fixtures/no_file',
-                'expectedExceptionMessageMatches' => '/Could not find the entrypoints file from Webpack: the file ".*\/fixtures\/no_file\/entrypoints.json" does not exist\./',
+                'expectedExceptionMessageMatches' => '/Could not find the entrypoints file from Webpack: the file ".*\/fixtures\/no_file\/entrypoints.json" does not exist\. Maybe you forgot to run npm\/yarn build?/',
                 'expectedJson' => '',
                 'decodedJson' => null,
             ],
             [
                 'entrypointFilePath' => '/../fixtures/bad_json',
-                'expectedExceptionMessageMatches' => '/There was a problem JSON decoding the ".*" file/',
+                'expectedExceptionMessageMatches' => '/There was a problem JSON decoding the ".*" file\. Try to run npm\/yarn build to fix the issue\./',
                 'expectedJson' => file_get_contents(__DIR__.'/../fixtures/bad_json/entrypoints.json'),
                 'decodedJson' => null,
             ],
