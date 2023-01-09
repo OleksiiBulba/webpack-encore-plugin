@@ -102,21 +102,21 @@ class EntrypointLookup implements EntrypointLookupInterface
         }
 
         if (!file_exists($this->getEntrypointJsonPath())) {
-            throw new \InvalidArgumentException(sprintf('Could not find the entrypoints file from Webpack: the file "%s" does not exist.', $this->getEntrypointJsonPath()));
+            throw new \InvalidArgumentException(sprintf('Could not find the entrypoints file from Webpack: the file "%s" does not exist. Maybe you forgot to run npm/yarn build?', $this->getEntrypointJsonPath()));
         }
 
         try {
             $entriesData = $this->decoder->decode(file_get_contents($this->getEntrypointJsonPath()), JsonEncoder::FORMAT);
         } catch (UnexpectedValueException $e) {
-            throw new \InvalidArgumentException(sprintf('There was a problem JSON decoding the "%s" file', $this->getEntrypointJsonPath()), 0, $e);
+            throw new \InvalidArgumentException(sprintf('There was a problem JSON decoding the "%s" file. Try to run npm/yarn build to fix the issue.', $this->getEntrypointJsonPath()), 0, $e);
         }
 
         if (!\is_array($entriesData)) {
-            throw new \InvalidArgumentException(sprintf('There was a problem JSON decoding the "%s" file', $this->getEntrypointJsonPath()));
+            throw new \InvalidArgumentException(sprintf('There was a problem JSON decoding the "%s" file. Try to run npm/yarn build to fix the issue.', $this->getEntrypointJsonPath()));
         }
 
         if (!isset($entriesData['entrypoints'])) {
-            throw new \InvalidArgumentException(sprintf('Could not find an "entrypoints" key in the "%s" file', $this->getEntrypointJsonPath()));
+            throw new \InvalidArgumentException(sprintf('Could not find an "entrypoints" key in the "%s" file. Try to run npm/yarn build to fix the issue.', $this->getEntrypointJsonPath()));
         }
 
         return $this->entriesData = $entriesData;
