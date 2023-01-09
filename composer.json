@@ -3,7 +3,6 @@
     "description": "This is a Micro plugin for webpack-encore support",
     "license": "MIT",
     "type": "micro-plugin",
-    "version": "1.1",
     "authors": [
         {
             "name": "Oleksii Bulba",
@@ -13,7 +12,9 @@
         }
     ],
     "require": {
-        "php": "^8.1 || ^8.2",
+        "php": "^8.2",
+        "micro/kernel-boot-configuration": "^1",
+        "micro/kernel-boot-plugin-depended": "^1",
         "micro/plugin-twig": "^1",
         "symfony/serializer": "^6.2"
     },
@@ -52,13 +53,16 @@
         "php-cs-try": "./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no",
         "phpstan": "./vendor/bin/phpstan analyze --no-progress",
         "phpunit": "./vendor/bin/phpunit",
+        "psalm": "./vendor/bin/psalm --no-progress --show-info=true",
         "statics": [
             "@phpstan",
-            "@php-cs-try"
+            "@php-cs-try",
+            "@psalm"
         ],
         "test": [
             "@statics",
-            "@phpunit",
+            "composer validate --strict",
+            "composer normalize",
             "@coverage"
         ]
     }

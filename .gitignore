@@ -4,3 +4,5 @@ composer.lock
 .php-cs-fixer.cache
 test-coverage-report
 phpunit.xml
+.php-cs-fixer.php
+phpstan.neon

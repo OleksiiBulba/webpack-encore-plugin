@@ -2,6 +2,23 @@ on: [pull_request]
 name: Static analysis
 
 jobs:
+  composer-verify:
+    name: Composer verify
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          coverage: none
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Verify
+        run: composer validate --strict
+
   phpstan:
     name: PHPStan
     runs-on: ubuntu-22.04
@@ -13,7 +30,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           coverage: none
           tools: cs2pr
 
@@ -37,7 +54,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           coverage: none
           tools: cs2pr
 
@@ -45,7 +62,7 @@ jobs:
         uses: ramsey/composer-install@v2
 
       - name: PHP-CS-Fixer
-        run: ./vendor/bin/php-cs-fixer fix --verbose --dry-run --format=checkstyle --using-cache=no | cs2pr
+        run: PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix --verbose --dry-run --format=checkstyle --using-cache=no | cs2pr
 
   psalm:
     name: Psalm
@@ -57,7 +74,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           coverage: none
           tools: vimeo/psalm:4.11.2
 
@@ -78,7 +95,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           coverage: none
           tools: composer-normalize
 

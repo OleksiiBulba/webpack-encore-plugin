@@ -66,7 +66,7 @@ class TagRendererTest extends TestCase
                     '/path/to/css/file.css',
                     '/path/to/another/css/file.css',
                 ],
-                'expectedLinkTagString' => /* @lang text */ '<link rel="stylesheet" href="/path/to/css/file.css"><link rel="stylesheet" href="/path/to/another/css/file.css">',
+                'expectedLinkTagString' => /* @lang text */ '<link href="/path/to/css/file.css" rel="stylesheet"><link href="/path/to/another/css/file.css" rel="stylesheet">',
             ],
         ];
     }

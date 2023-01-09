@@ -30,7 +30,7 @@ class EntrypointLookup implements EntrypointLookupInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getJavaScriptFiles(string $entryName): array
     {
@@ -38,7 +38,7 @@ class EntrypointLookup implements EntrypointLookupInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getCssFiles(string $entryName): array
     {
@@ -106,20 +106,20 @@ class EntrypointLookup implements EntrypointLookupInterface
         }
 
         try {
-            $this->entriesData = $this->decoder->decode(file_get_contents($this->getEntrypointJsonPath()), JsonEncoder::FORMAT);
+            $entriesData = $this->decoder->decode(file_get_contents($this->getEntrypointJsonPath()), JsonEncoder::FORMAT);
         } catch (UnexpectedValueException $e) {
             throw new \InvalidArgumentException(sprintf('There was a problem JSON decoding the "%s" file', $this->getEntrypointJsonPath()), 0, $e);
         }
 
-        if (null === $this->entriesData) {
+        if (!\is_array($entriesData)) {
             throw new \InvalidArgumentException(sprintf('There was a problem JSON decoding the "%s" file', $this->getEntrypointJsonPath()));
         }
 
-        if (!isset($this->entriesData['entrypoints'])) {
+        if (!isset($entriesData['entrypoints'])) {
             throw new \InvalidArgumentException(sprintf('Could not find an "entrypoints" key in the "%s" file', $this->getEntrypointJsonPath()));
         }
 
-        return $this->entriesData;
+        return $this->entriesData = $entriesData;
     }
 
     private function getEntrypointJsonPath(): string

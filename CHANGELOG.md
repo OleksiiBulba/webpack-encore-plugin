@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Added
+
+- Explicit dependency on TwigPlugin, from now on it will be loaded automatically by `micro/kernel-boot-plugin-depended` package;
+- Added documentation for twig functions in php annotations;
+
+## Changed
+
+- Dropped support for php 8.1;
+
 ## [1.1] - 2022-12-20
 
 ### Updated

@@ -13,13 +13,13 @@ namespace OleksiiBulba\WebpackEncorePlugin\TagRenderer;
 
 use OleksiiBulba\WebpackEncorePlugin\Asset\EntrypointLookupInterface;
 
-class TagRenderer implements TagRendererInterface
+readonly class TagRenderer implements TagRendererInterface
 {
     public function __construct(
-        private readonly EntrypointLookupInterface $entrypointLookup,
-        private readonly array $defaultAttributes = [],
-        private readonly array $defaultScriptAttributes = ['type' => 'application/javascript'],
-        private readonly array $defaultLinkAttributes = []
+        private EntrypointLookupInterface $entrypointLookup,
+        private array $defaultAttributes = [],
+        private array $defaultScriptAttributes = ['type' => 'application/javascript'],
+        private array $defaultLinkAttributes = ['rel' => 'stylesheet']
     ) {
     }
 
@@ -28,13 +28,14 @@ class TagRenderer implements TagRendererInterface
         $scriptTags = [];
 
         foreach ($this->entrypointLookup->getJavaScriptFiles($entryName) as $filename) {
-            $attributes = [];
-            $attributes['src'] = $filename;
-            $attributes = array_merge($attributes, $this->defaultAttributes, $this->defaultScriptAttributes, $extraAttributes);
-
             $scriptTags[] = sprintf(
                 /* @lang text */ '<script %s></script>',
-                $this->convertArrayToAttributes($attributes)
+                $this->convertArrayToAttributes(array_merge(
+                    ['src' => $filename],
+                    $this->defaultAttributes,
+                    $this->defaultScriptAttributes,
+                    $extraAttributes
+                ))
             );
         }
 
@@ -46,14 +47,14 @@ class TagRenderer implements TagRendererInterface
         $scriptTags = [];
 
         foreach ($this->entrypointLookup->getCssFiles($entryName) as $filename) {
-            $attributes = [];
-            $attributes['rel'] = 'stylesheet';
-            $attributes['href'] = $filename;
-            $attributes = array_merge($attributes, $this->defaultAttributes, $this->defaultLinkAttributes, $extraAttributes);
-
             $scriptTags[] = sprintf(
                 /* @lang text */ '<link %s>',
-                $this->convertArrayToAttributes($attributes)
+                $this->convertArrayToAttributes(array_merge(
+                    ['href' => $filename],
+                    $this->defaultAttributes,
+                    $this->defaultLinkAttributes,
+                    $extraAttributes
+                ))
             );
         }
 
@@ -68,9 +69,9 @@ class TagRenderer implements TagRendererInterface
         });
 
         return implode(' ', array_map(
-            static function ($key, string|null|bool $value) {
+            static function ($key, string|true|null $value) {
                 // allows for things like defer: true to only render "defer"
-                if (\is_bool($value) || null === $value) {
+                if (true === $value || null === $value) {
                     return $key;
                 }
 

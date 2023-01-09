@@ -13,7 +13,9 @@ namespace OleksiiBulba\WebpackEncorePlugin;
 
 use Micro\Framework\Kernel\Plugin\ConfigurableInterface;
 use Micro\Framework\Kernel\Plugin\PluginConfigurationTrait;
+use Micro\Framework\Kernel\Plugin\PluginDependedInterface;
 use Micro\Plugin\Twig\Plugin\TwigExtensionPluginInterface;
+use Micro\Plugin\Twig\TwigPlugin;
 use OleksiiBulba\WebpackEncorePlugin\Asset\EntrypointLookup;
 use OleksiiBulba\WebpackEncorePlugin\Asset\EntrypointLookupInterface;
 use OleksiiBulba\WebpackEncorePlugin\TagRenderer\TagRenderer;
@@ -30,13 +32,18 @@ use Twig\Extension\ExtensionInterface;
  *
  * @codeCoverageIgnore
  */
-class WebpackEncorePlugin implements TwigExtensionPluginInterface, ConfigurableInterface
+class WebpackEncorePlugin implements TwigExtensionPluginInterface, ConfigurableInterface, PluginDependedInterface
 {
     use PluginConfigurationTrait;
 
     public function provideTwigExtensions(): iterable
     {
         yield $this->createEntryFilesTwigExtension();
+    }
+
+    public function getDependedPlugins(): iterable
+    {
+        yield TwigPlugin::class;
     }
 
     protected function createEntryFilesTwigExtension(): ExtensionInterface

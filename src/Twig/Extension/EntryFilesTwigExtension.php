@@ -21,17 +21,24 @@ use Twig\TwigFunction;
  */
 class EntryFilesTwigExtension extends AbstractExtension
 {
-    private TagRendererInterface $tagRenderer;
-    private EntrypointLookupInterface $entrypointLookup;
-
     public function __construct(
-        TagRendererInterface $tagRenderer,
-        EntrypointLookupInterface $entrypointLookupCollection
+        private readonly TagRendererInterface $tagRenderer,
+        private readonly EntrypointLookupInterface $entrypointLookup
     ) {
-        $this->tagRenderer = $tagRenderer;
-        $this->entrypointLookup = $entrypointLookupCollection;
     }
 
+    /**
+     * Returns twig functions for registering them in twig environment.
+     *
+     * There are 5 available twig functions:
+     * - encore_entry_js_files
+     * - encore_entry_css_files
+     * - encore_entry_script_tags
+     * - encore_entry_link_tags
+     * - encore_entry_exists
+     *
+     * @return TwigFunction[]
+     */
     public function getFunctions(): array
     {
         return [
