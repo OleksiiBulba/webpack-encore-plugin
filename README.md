@@ -3,6 +3,9 @@
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Total Downloads][ico-downloads]][link-downloads]
+[![Scrutinizer Code Quality][ico-scrutinizer-quality]][link-scrutinizer-quality]
+[![Code Coverage][ico-scrutinizer-coverage]][link-scrutinizer-coverage]
+[![Build Status][ico-scrutinizer-build]][link-scrutinizer-build]
 
 This plugin adds several twig functions that help to include script and style html tags to twig templates from webpack-encore entries.
 
@@ -123,6 +126,14 @@ For the full copyright and license information, please see the [License File](LI
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/oleksiibulba/webpack-encore-plugin.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/oleksiibulba/webpack-encore-plugin.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/oleksiibulba/webpack-encore-plugin.svg?style=flat-square
+
+[ico-scrutinizer-quality]: https://img.shields.io/scrutinizer/quality/g/OleksiiBulba/webpack-encore-plugin/master?style=flat-square
+[ico-scrutinizer-coverage]: https://img.shields.io/scrutinizer/coverage/g/OleksiiBulba/webpack-encore-plugin/master?style=flat-square
+[ico-scrutinizer-build]: https://img.shields.io/scrutinizer/build/g/OleksiiBulba/webpack-encore-plugin/master?style=flat-square
+
+[link-scrutinizer-quality]: https://scrutinizer-ci.com/g/OleksiiBulba/webpack-encore-plugin/?branch=master
+[link-scrutinizer-coverage]: https://scrutinizer-ci.com/g/OleksiiBulba/webpack-encore-plugin/?branch=master
+[link-scrutinizer-build]: https://scrutinizer-ci.com/g/OleksiiBulba/webpack-encore-plugin/build-status/master
 
 [link-microframework]: https://github.com/Micro-PHP/skeleton
 [link-symfony-webpack-encore]: https://www.npmjs.com/package/@symfony/webpack-encore
