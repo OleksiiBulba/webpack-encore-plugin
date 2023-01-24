@@ -1,5 +1,5 @@
 {
-    "name": "oleksiibulba/webpack-encore-plugin",
+    "name": "micro/plugin-twig-webpack-encore",
     "description": "This is a Micro plugin for webpack-encore support",
     "license": "MIT",
     "type": "micro-plugin",
@@ -12,10 +12,9 @@
         }
     ],
     "require": {
-        "php": "^8.2",
-        "micro/kernel-boot-configuration": "^1",
-        "micro/kernel-boot-plugin-depended": "^1",
-        "micro/plugin-twig": "^1",
+        "micro/kernel-boot-configuration": "^1.6",
+        "micro/kernel-boot-plugin-depended": "^1.6",
+        "micro/plugin-twig": "^1.6",
         "symfony/serializer": "^6.2"
     },
     "require-dev": {
@@ -49,8 +48,8 @@
     },
     "scripts": {
         "coverage": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-text",
-        "php-cs-fix": "./vendor/bin/php-cs-fixer fix --verbose --using-cache=no",
-        "php-cs-try": "./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no",
+        "php-cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix --verbose --using-cache=no",
+        "php-cs-try": "PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no",
         "phpstan": "./vendor/bin/phpstan analyze --no-progress",
         "phpunit": "./vendor/bin/phpunit",
         "psalm": "./vendor/bin/psalm --no-progress --show-info=true",
